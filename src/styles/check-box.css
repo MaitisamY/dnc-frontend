@@ -1,0 +1,79 @@
+.checkbox-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .checkbox {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Hide the default checkbox input */
+  .checkbox input[type="checkbox"] {
+    display: none;
+  }
+
+  /* Custom checkbox style */
+  .custom-checkbox {
+    width: 25px;
+    height: 25px;
+    background-color: #ffffff;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+
+  /* Custom checkbox checked style */
+  .checkbox input[type="checkbox"]:checked + .custom-checkbox {
+    background-color: #3498db;
+    border-color: #3498db;
+  }
+
+  /* Checkmark icon */
+  .checkmark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    border: 2px solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform-origin: bottom;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  /* Show the checkmark when checkbox is checked */
+  .checkbox input[type="checkbox"]:checked + .custom-checkbox .checkmark {
+    opacity: 1;
+  }
+
+  /* Checkbox label style */
+  .checkbox-label {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+
+  /* Specific border for each checkbox */
+  #checkbox1 .custom-checkbox {
+    border-color: #3498db; /* Red border for checkbox 1 */
+  }
+
+  #checkbox2 .custom-checkbox {
+    border-color: #3498db; /* Green border for checkbox 2 */
+  }
+
+  #checkbox3 .custom-checkbox {
+    border-color: #3498db; /* Yellow border for checkbox 3 */
+  }
+
+  #checkbox4 .custom-checkbox {
+    border-color: #3498db; /* Blue border for checkbox 4 */
+  }

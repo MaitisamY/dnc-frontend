@@ -1,0 +1,64 @@
+:root {
+    --font-family: 'Yantramanav', sans-serif;
+    --fontawesome: "Font Awesome 5 Pro";
+    --black: #000000;
+    --dark: #091d3e;
+    --white: #ffffff; 
+    --theme: #104cba; 
+    --blue: #104cba;
+    --color-heading: #232323;
+    --color-default: #666666;
+    --gradient: linear-gradient(to right, #02218f,  #0e72e3, #02218f);
+    --border-color: #e7e7e7;
+    --box-shadow: 0px 0px 20px 0px rgba(7, 20, 52, .1);
+    --box-shadow-secondary: 0 6px 12px rgba(0, 0, 0, 0.175);
+    --box-shadow-extra: 0 5px 50px 0 rgba(0, 0, 0, 0.15);
+    --box-shadow-dark: 0px 0px 0px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.link,
+.link:hover {
+    color: var(--dark);
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
