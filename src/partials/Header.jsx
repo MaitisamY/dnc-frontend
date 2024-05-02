@@ -25,8 +25,6 @@ function Header() {
     
             localStorage.removeItem('user')
             window.location.href = '/login';
-
-            toast.success('Logout Successful')
         } catch (error) {
             console.log(error)
         }
