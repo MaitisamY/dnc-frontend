@@ -1,0 +1,201 @@
+.scrub-section {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+    background-color: transparent;
+}
+
+.scrub-section .scrub-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.scrub-section .scrub-container .scrub-header {
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    padding: 0;
+}
+
+.scrub-section .scrub-container .scrub-header .scrub-title {
+    text-align: center;
+    font-size: 36px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.scrub-section .scrub-container .scrub-header .pills {
+    width: max-content;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: row;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.scrub-section .scrub-container .scrub-header .pills .pill {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+    padding: 0;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.scrub-section .scrub-container .scrub-header .pills .pill.active {
+    color: var(--dark);
+}
+
+.scrub-section .scrub-container .tab {
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+    margin-bottom: 50px;
+    animation: fadeIn 0.5s ease-in-out;
+    background-color: transparent;
+    border: none;
+    box-shadow: 0px 0px 5px -2px rgba(0, 0, 0, 0.3);
+}
+
+.scrub-section .scrub-container .tab h3 {
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.scrub-section .scrub-container .scrub-item {
+    width: 45%;
+    height: auto;
+    min-height: 400px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 8px -2px rgba(0, 0, 0, 0.3);
+}
+
+.custom-file-input {
+    position: relative;
+    width: 100%;
+}
+
+.input-file {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.custom-file-input label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    padding: 50px 10px;
+    border: 2px dashed #aaa;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.custom-file-input label:hover {
+    background-color: #f0f0f0;
+}
+
+.custom-file-input label span {
+    display: inline-block;
+    padding: 8px 20px 4px 20px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    outline: 1px solid #ccc;
+    outline-offset: -2px;
+    margin: 0 10px;
+    text-transform: uppercase;
+}
+
+.scrub-item.dragging .custom-file-input label {
+    background-color: #e0e0e0;
+}
+
+.scrub-item.dragging .custom-file-input label span {
+    opacity: 0.5;
+}
+
+.scrub-section .scrub-container .scrub-item .scrub-info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    width: 100%;
+    padding: 20px 20px;
+    border: 2px dashed #aaa;
+    border-radius: 5px;
+}
+
+.scrub-section .scrub-container .scrub-item .scrub-info-container .pill-referer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+    padding: 0;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.scrub-section .scrub-container .scrub-item .scrub-info-container .pill-referer.active {
+    color: var(--dark);
+}
+
+.scrub-section .scrub-container .scrub-item .scrub-info-container h4 {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.scrub-section .scrub-container .scrub-item .scrub-info-container h4 span {
+    font-weight: 400;
+}
+

@@ -2,23 +2,34 @@ import '../styles/header.css'
 
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { 
-    FaFacebook, 
-    FaLinkedin, 
-    FaPinterest, 
-    FaRegClock, 
-    FaChevronDown, 
-    FaChevronUp,
-    FaCommentsDollar 
-} from 'react-icons/fa'
+import { FaFacebook, FaLinkedin, FaPinterest, FaRegClock, FaChevronDown,FaCommentsDollar } from 'react-icons/fa'
+import { useUser } from '../hooks/useUserProvider'
+import { toast } from 'react-toastify'
+import axios from 'axios'
 
 function Header() {
 
+    const { user } = useUser()
     const { pathname } = useLocation()
+
     if (pathname === '/') {
         document.title = 'DNC Litigator Check | Home'
     } else {
         document.title = 'DNC Litigator Check | ' + pathname.charAt(1).toUpperCase() + pathname.slice(2)
+    }
+
+    const handleLogout = async () => {
+    
+        try {
+            await axios.post('http://localhost:3000/logout')
+    
+            localStorage.removeItem('user')
+            window.location.href = '/login';
+
+            toast.success('Logout Successful')
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
@@ -102,7 +113,52 @@ function Header() {
                         </div>
                     </Link>
                     <Link className="link text-uppercase" to="/contact">Contact</Link>
-                    <Link className="link text-uppercase" to="/login">Login / Signup</Link>
+                    {
+                        user ? 
+                        // <button className="link-box-danger text-uppercase" onClick={handleLogout}>Logout</button>
+                        <Link className="link text-uppercase dropdown" to="">
+                            {user.name} <FaChevronDown />
+                            <div className="dropdown-menu">
+                                <ul>
+                                    <li>
+                                        <Link className="link" to="/dashboard">
+                                            Dashboard
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className="link" to="/purchase-coins">
+                                            Purchase more scrub coins
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className="link" to="/my-subscription">
+                                            My Subscription 
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className="link" to="/payment-method">
+                                            Payment Method
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className="link" to="/edit-account">
+                                            Edit Account
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <button 
+                                            className="link-box-danger text-uppercase" 
+                                            onClick={handleLogout}
+                                            style={{ width: '100%' }}
+                                        >
+                                            Logout
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </Link> 
+                        : <Link className="link text-uppercase" to="/login">Login / Signup</Link>
+                    }
                 </div>
 
                 <div className="header-connect">

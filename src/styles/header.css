@@ -65,7 +65,8 @@ header {
     margin: 0;
     padding: 10px 50px; 
     box-sizing: border-box;
-    background-color: var(--white);
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -124,6 +125,7 @@ header .header-nav .dropdown .dropdown-menu {
     z-index: 9999;
     padding: 0;
     font-size: 14px;
+    transform: translate(-35%, 0);
 }
 
 header .header-nav .dropdown:hover .dropdown-menu {

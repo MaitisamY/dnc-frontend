@@ -1,9 +1,25 @@
-import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import axios from 'axios'
+import { useUser } from '../../hooks/useUserProvider'
+import { useSignUp } from '../../helpers/signUpHelper'
 
 function SignUpForm() {
+
+    const { user } = useUser()
+    const navigate = useNavigate()
+
+    const {
+        creds,
+        errors,
+        serverResponse,
+        isLoading,
+        handleChange,
+        handleSubmit
+    } = useSignUp()
+
+    if (user) {
+        navigate('/dashboard')
+    }
+
     return (
         <div className="contact-form-area about-area default-padding-top about-solid-thumb bg-gray overflow-hidden">
             <div className="container">
@@ -29,39 +45,105 @@ function SignUpForm() {
                                     <div className="row">
                                         <div className="col-lg-12">
                                             <div className="form-group">
-                                                <input className="form-control" id="name" name="name" placeholder="Name" type="text" />
-                                                <span className="alert-error"></span>
+                                                <input 
+                                                    className="form-control" 
+                                                    value={creds.name} 
+                                                    name="name" 
+                                                    placeholder="Name" 
+                                                    type="text" 
+                                                    onChange={handleChange}
+                                                />
+                                                {
+                                                    errors.nameError && 
+                                                    <p style={{ color: 'red', fontWeight: '600', fontSize: '14px', marginLeft: '10px' }}>
+                                                        {errors.nameError}
+                                                    </p>
+                                                }
                                             </div>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-lg-6 mt-2">
                                             <div className="form-group">
-                                                <input className="form-control" id="emailAddress" name="emailAddress" placeholder="Email Address" type="text" />
-                                                <span className="alert-error"></span>
+                                                <input 
+                                                    className="form-control" 
+                                                    value={creds.email} 
+                                                    name="email" 
+                                                    placeholder="Email Address" 
+                                                    type="email" 
+                                                    onChange={handleChange}
+                                                />
+                                                {
+                                                    errors.emailError && 
+                                                    <p style={{ color: 'red', fontWeight: '600', fontSize: '14px', marginLeft: '10px' }}>
+                                                        {errors.emailError}
+                                                    </p>
+                                                }
                                             </div>
                                         </div>
                                         <div className="col-lg-6 mt-2">
                                             <div className="form-group">
-                                                <input className="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone" type="tel" />
-                                                <span className="alert-error"></span>
+                                                <input 
+                                                    className="form-control" 
+                                                    value={creds.phone} 
+                                                    name="phone" 
+                                                    placeholder="Phone" 
+                                                    type="tel" 
+                                                    onChange={handleChange}
+                                                />
+                                                {
+                                                    errors.phoneError && 
+                                                    <p style={{ color: 'red', fontWeight: '600', fontSize: '14px', marginLeft: '10px' }}>
+                                                        {errors.phoneError}
+                                                    </p>
+                                                }
                                             </div>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-lg-6 mt-2">
                                             <div className="form-group">
-                                                <input className="form-control" id="password" name="password" placeholder="Password" type="password" />
-                                                <span className="alert-error"></span>
+                                                <input 
+                                                    className="form-control" 
+                                                    value={creds.password}
+                                                    name="password" 
+                                                    placeholder="Password" 
+                                                    type="password" 
+                                                    onChange={handleChange}
+                                                />
+                                                {
+                                                    errors.passwordError && 
+                                                    <p style={{ color: 'red', fontWeight: '600', fontSize: '14px', marginLeft: '10px' }}>
+                                                        {errors.passwordError}
+                                                    </p>
+                                                }
                                             </div>
                                         </div>
                                         <div className="col-lg-6 mt-2">
                                             <div className="form-group">
-                                                <input className="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" type="password" />
-                                                <span className="alert-error"></span>
+                                                <input 
+                                                    className="form-control" 
+                                                    value={creds.confirmPassword} 
+                                                    name="confirmPassword" 
+                                                    placeholder="Confirm Password" 
+                                                    type="password" 
+                                                    onChange={handleChange}
+                                                />
+                                                {
+                                                    errors.confirmPasswordError && 
+                                                    <p style={{ color: 'red', fontWeight: '600', fontSize: '14px', marginLeft: '10px' }}>
+                                                        {errors.confirmPasswordError}
+                                                    </p>
+                                                }
                                             </div>
                                         </div>
                                     </div>
+                                    {
+                                        errors.isMatched &&
+                                        <p style={{ color: 'red', fontWeight: '600', fontSize: '14px', marginLeft: '10px' }}>
+                                            {errors.isMatched}
+                                        </p>
+                                    }
                                     <div className="row">
                                         <div className="col-lg-12 mt-3">
                                             <button 
@@ -69,8 +151,17 @@ function SignUpForm() {
                                                 className="btn btn-gradient" 
                                                 name="submit"  
                                                 style={{ width: '100%' }}
+                                                onClick={handleSubmit}
                                             >
-                                                Sign-up
+                                                {
+                                                    isLoading ? (
+                                                        <div className="loader">
+                                                            <span className="loading-spinner"></span>
+                                                        </div>
+                                                    ) : (
+                                                        'Sign Up'
+                                                    )
+                                                }
                                             </button>
                                         </div>
                                     </div>
@@ -84,6 +175,15 @@ function SignUpForm() {
                                     <div className="col-lg-12 alert-notification">
                                         <div id="message" className="alert-msg"></div>
                                     </div>
+
+                                    {
+                                        serverResponse && 
+                                        <p 
+                                            className={serverResponse.status === 200 ? 'success' : 'error'}
+                                        >
+                                            {serverResponse.message}
+                                        </p>
+                                    }
                                 </form>
                             </div>
                         </div>

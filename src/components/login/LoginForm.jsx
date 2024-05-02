@@ -2,9 +2,14 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import { useUser } from '../../hooks/useUserProvider'
 
 function LoginForm() {
+
+    const { user, updateUser } = useUser()
+
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false)
 
     const [creds, setCreds] = useState({
         email: '',
@@ -55,32 +60,23 @@ function LoginForm() {
             return;
         }
         else {
+
+            setIsLoading(true);
             try {
                 const response = await axios.post('http://localhost:3000/login', {
                     email: creds.email, // Corrected to use creds.email
                     password: creds.password // Corrected to use creds.password
                 });
-                if (response.status === 200) {
 
-                    setServerResponse({ status: 200, message: response.data.message});
-                    setTimeout(() => {
-                        navigate('/dashboard')
-                    }, 3000);
+                setServerResponse({ status: response.data.status, message: response.data.message});
+
+                updateUser(response.data.session);
+
+                setTimeout(() => {
+                    navigate('/dashboard')
+                }, 3000);
                     
-                } else {
-                    toast.warn(response.data.message, {
-                        position: "bottom-right",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light"
-                    });
-                    setServerResponse({ status: 400, message: response.data.message});
-                }
-                
+                 
             } catch (error) {
                 toast.error(error.response.data.message, {
                     position: "bottom-right",
@@ -90,13 +86,19 @@ function LoginForm() {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "light"
+                    theme: "dark"
                 });
-                setServerResponse(error.response.data.message);
+                setServerResponse({ status: error.response.status, message: error.response.data.message});
             }
         }
+
+        setIsLoading(false);
     };
-    
+
+
+    if (user) {
+        navigate('/dashboard')
+    }
 
     return (
         <div className="contact-form-area about-area default-padding-top about-solid-thumb bg-gray overflow-hidden">
@@ -175,7 +177,15 @@ function LoginForm() {
                                             name="submit"  
                                             style={{ width: '100%' }}
                                         >
-                                            Login
+                                            {
+                                                isLoading ? (
+                                                    <div className="loader">
+                                                        <span className="loading-spinner"></span>
+                                                    </div>
+                                                ) : (
+                                                    'Login'
+                                                )
+                                            }
                                         </button>
                                     </div>
                                 </div>
@@ -192,7 +202,7 @@ function LoginForm() {
                                 {
                                     serverResponse && 
                                     <p 
-                                        style={{ color: '#104cba', fontWeight: '600', fontSize: '14px' }}
+                                        className={serverResponse.status === 200 ? 'success' : 'error'}
                                     >
                                         {serverResponse.message}
                                     </p>
