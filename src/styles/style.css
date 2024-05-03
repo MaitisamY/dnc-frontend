@@ -7,7 +7,7 @@ Version: 1.0.0
 */
 @import url("https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&amp;display=swap");
 @font-face {
-  font-family: WorkSans;
+  font-family: "WorkSans";
   src: url(../fonts/WorkSans-VariableFont_wght.ttf);
 }
 
@@ -168,14 +168,35 @@ strong {
 /* --------------------------------------------
     Template Default Fonts & Fonts Styles
  ---------------------------------------------- */
-body {
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: "Yantramanav", sans-serif;
+}
+
+html {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-size: 16px;
     font-weight: 400;
     line-height: 28px;
     overflow-x: hidden;
     background-color: #ffffff;
     color: #666666;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 h1, h2, h3, h4, h5, h6 {

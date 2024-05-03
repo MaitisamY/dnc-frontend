@@ -95,7 +95,7 @@ function ScrubSection() {
                             accept=".csv"
                         />
                         <label htmlFor="fileInput" onClick={handleBrowseClick}>
-                            <span>{fileName ? fileName : 'Choose file'}</span> or drag and drop your file here <FaFileUpload size={60} />
+                            <span>{fileName ? fileName : 'Choose file'}</span> or drag and drop your file here <FaFileUpload size={50} />
                         </label>
                     </div>
 
@@ -109,7 +109,9 @@ function ScrubSection() {
                         </a>
                     </div>
                 </div>
-                <div className="scrub-item"></div>
+                <div className="scrub-item bg-light-blue">
+
+                </div>
             </div>
         </div>
     )

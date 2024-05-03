@@ -14,7 +14,7 @@
 
 @media screen and (max-width: 768px) {
     .pre-header {
-        padding: 10px 20px;
+        display: none;
     }
 }
 
@@ -74,9 +74,19 @@ header {
     gap: 10px;
 }
 
+header .menu-toggle {
+    display: none;
+}
+
 @media screen and (max-width: 768px) {
     header {
         padding: 10px 20px;
+    }
+
+    header .menu-toggle {
+        display: inline-block;
+        cursor: pointer;
+        font-size: 20px;
     }
 }
 
@@ -84,6 +94,12 @@ header .header-logo img {
     width: 170px;
     height: auto;
     object-fit: contain;
+}
+
+@media screen and (max-width: 768px) {
+    header .header-logo img {
+        width: 120px;
+    }
 }
 
 header .header-nav {
@@ -94,6 +110,12 @@ header .header-nav {
     gap: 20px;
     padding: 0 30px;
     font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+    header .header-nav {
+        display: none;
+    }
 }
 
 header .header-nav .link {
@@ -147,6 +169,12 @@ header .header-connect {
     align-self: flex-end;
     justify-self: flex-end;
     border-left: 1px solid #d1d1d1;
+}
+
+@media screen and (max-width: 768px) {
+    header .header-connect {
+        display: none;
+    }
 }
 
 header .header-connect .mail {

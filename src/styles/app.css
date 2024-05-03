@@ -14,28 +14,7 @@
     --box-shadow-secondary: 0 6px 12px rgba(0, 0, 0, 0.175);
     --box-shadow-extra: 0 5px 50px 0 rgba(0, 0, 0, 0.15);
     --box-shadow-dark: 0px 0px 0px;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    --bg-light-blue: #aec4f7;
 }
 
 .link-box {
@@ -162,6 +141,10 @@ body {
 
 .text-uppercase {
     text-transform: uppercase;
+}
+
+.bg-light-blue {
+    background: var(--bg-light-blue);
 }
 
 .success {

@@ -2,7 +2,7 @@ import '../styles/header.css'
 
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { FaFacebook, FaLinkedin, FaPinterest, FaRegClock, FaChevronDown,FaCommentsDollar } from 'react-icons/fa'
+import { FaFacebook, FaLinkedin, FaPinterest, FaRegClock, FaChevronDown,FaCommentsDollar, FaBars } from 'react-icons/fa'
 import { useUser } from '../hooks/useUserProvider'
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -69,6 +69,8 @@ function Header() {
                     </Link>
                 </div>
 
+                <a className="menu-toggle"><FaBars /></a>
+
                 <div className="header-nav">
                     <Link className="link text-uppercase" to="/">Home</Link>
                     <Link className="link text-uppercase" to="/about">About</Link>
@@ -113,7 +115,6 @@ function Header() {
                     <Link className="link text-uppercase" to="/contact">Contact</Link>
                     {
                         user ? 
-                        // <button className="link-box-danger text-uppercase" onClick={handleLogout}>Logout</button>
                         <Link className="link text-uppercase dropdown" to="">
                             {user.name} <FaChevronDown />
                             <div className="dropdown-menu">
