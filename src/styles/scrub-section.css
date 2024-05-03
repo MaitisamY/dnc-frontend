@@ -1,38 +1,61 @@
-.scrub-section {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 30px;
-    background-color: transparent;
-}
-
-.scrub-section .scrub-container {
+.scrub-container {
     width: 70%;
     height: auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: row;
     gap: 20px;
     flex-wrap: wrap;
+    margin: 0 0 40px 0;
+}
+
+@media screen and (max-width: 1599px) {
+    .scrub-container {
+        width: 78%;
+    }
+}
+
+@media screen and (max-width: 1499px) {
+    .scrub-container {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1399px) {
+    .scrub-container {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 1299) {
+    .scrub-container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .scrub-container {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .scrub-container {
+        width: 100%;
+        align-items: center;
+    }
 }
 
 @media screen and (max-width: 768px) {
-    .scrub-section {
-        padding: 5px;
-    }
-
-    .scrub-section .scrub-container {
+    .scrub-container {
         width: 100%;
         flex-direction: column;
     }
 }
 
-.scrub-section .scrub-container .scrub-header {
-    width: 90%;
+.scrub-container .scrub-header {
+    width: 100%;
     height: auto;
     display: flex;
     justify-content: space-between;
@@ -41,17 +64,17 @@
     gap: 20px;
     flex-wrap: wrap;
     margin: 20px 0;
-    padding: 0;
+    padding: 0 45px;
 }
 
-.scrub-section .scrub-container .scrub-header .scrub-title {
+.scrub-container .scrub-header .scrub-title {
     text-align: center;
-    font-size: 36px;
+    font-size: 34px;
     margin: 0;
     font-weight: 600;
 }
 
-.scrub-section .scrub-container .scrub-header .pills {
+.scrub-container .scrub-header .pills {
     width: max-content;
     height: auto;
     display: flex;
@@ -63,7 +86,7 @@
     padding: 0;
 }
 
-.scrub-section .scrub-container .scrub-header .pills .pill {
+.scrub-container .scrub-header .pills .pill {
     width: auto;
     height: auto;
     display: flex;
@@ -77,11 +100,25 @@
     cursor: pointer;
 }
 
-.scrub-section .scrub-container .scrub-header .pills .pill.active {
+.scrub-container .scrub-header .pills .pill.active {
     color: var(--dark);
 }
 
-.scrub-section .scrub-container .tab {
+@media screen and (max-width: 768px) {
+    .scrub-container .scrub-header .pills {
+        width: 100%;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .scrub-container .scrub-header .pills .pill {
+        white-space: nowrap;
+    }
+}
+
+.scrub-container .tab {
     width: 90%;
     height: auto;
     display: flex;
@@ -97,16 +134,52 @@
     box-shadow: 0px 0px 5px -2px rgba(0, 0, 0, 0.3);
 }
 
-.scrub-section .scrub-container .tab h3 {
+.scrub-container .tab h3 {
     font-size: 26px;
     font-weight: 400;
     margin-bottom: 10px;
 }
 
-.scrub-section .scrub-container .scrub-item {
+.scrub-container .scrub-item {
     width: 45%;
     height: auto;
-    min-height: 400px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 2px;
+    padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .scrub-container .scrub-item {
+        justify-content: center;
+        width: 90%;
+    }    
+}
+
+.scrub-container .scrub-item .scrub-title {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    font-size: 20px;
+    font-weight: 400;
+    gap: 5px;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+}
+
+.scrub-container .scrub-item .scrub-title span {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.scrub-container .scrub-item .scrub-body {
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -161,6 +234,7 @@
     outline-offset: -2px;
     margin: 0 10px;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .scrub-item.dragging .custom-file-input label {
@@ -171,7 +245,7 @@
     opacity: 0.5;
 }
 
-.scrub-section .scrub-container .scrub-item .scrub-info-container {
+.scrub-container .scrub-item .scrub-info-container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -182,7 +256,7 @@
     border-radius: 2px;
 }
 
-.scrub-section .scrub-container .scrub-item .scrub-info-container .pill-referer {
+.scrub-container .scrub-item .scrub-info-container .pill-referer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -195,17 +269,243 @@
     text-decoration: none;
 }
 
-.scrub-section .scrub-container .scrub-item .scrub-info-container .pill-referer.active {
+.scrub-container .scrub-item .scrub-info-container .pill-referer.active {
     color: var(--dark);
 }
 
-.scrub-section .scrub-container .scrub-item .scrub-info-container h4 {
+.scrub-container .scrub-item .scrub-info-container h4 {
     font-size: 20px;
     font-weight: 500;
     margin: 0;
 }
 
-.scrub-section .scrub-container .scrub-item .scrub-info-container h4 span {
+.scrub-container .scrub-item .scrub-info-container h4 span {
     font-weight: 400;
 }
 
+@media screen and (max-width: 1199px) { 
+    .scrub-container .scrub-item .scrub-info-container {
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+.scrub-container .scrub-item .scrub-checks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 2px;
+    gap: 20px;
+}
+
+.scrub-container .scrub-item .scrub-checks label {
+    width: 45%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+    padding: 10px 20px;
+    border: none;
+    outline: 1px solid rgba(170, 170, 170, 0.5);
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #666666;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+    .scrub-container .scrub-item .scrub-checks label {
+        width: 100%;
+    }
+}
+
+.scrub-container .scrub-item .scrub-checks label.active {
+    background-color: #0e409a;
+    outline: 1px solid #0e409a;
+    color: white;
+}
+
+.scrub-container .scrub-item .scrub-checks label:hover {
+    outline: 1px solid #0e409a;
+}
+
+.scrub-container .scrub-item .scrub-select {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #666666;
+    font-weight: 500;
+}
+
+.scrub-container .scrub-item .scrub-select h4 {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+    width: fit-content;
+}
+
+.scrub-container .scrub-item .scrub-select .dropdown {
+    width: 98%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #666666;
+    font-weight: 500;
+    background-color: transparent;
+    outline: 1px solid rgba(170, 170, 170, 0.5);
+    color: #666666;
+}
+
+.scrub-container .scrub-item .scrub-select .dropdown:hover {
+    background-color: transparent;
+    outline: 1px solid #0e409a;
+}
+
+.scrub-container .scrub-item .scrub-select .dropdown .dropdown-menu {
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    text-align: left;
+    list-style: none;
+    background-color: #f0f3f7;
+    background-clip: padding-box;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+    border: 1px solid #DFE3E7;
+    color: #475F7B;
+    border: 1px solid #DFE3E7;
+    -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.scrub-container .scrub-item .scrub-select .dropdown .dropdown-menu .menu {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #666666;
+    font-weight: 500;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.scrub-container .scrub-item .scrub-select .dropdown .dropdown-menu .menu .select-all {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    padding: 5px 10px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #666666;
+    font-weight: 500;
+    border-bottom: 1px solid #DFE3E7;
+}
+
+.scrub-container .scrub-item .scrub-select .dropdown .dropdown-menu .menu .item {
+    width: 45%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #666666;
+    font-weight: 500;
+}
+
+.scrub-container .scrub-item .scrub-info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+}
+
+.scrub-container .scrub-item .scrub-info p {
+    text-align: justify;
+    font-size: medium;
+}
+
+.scrub-container .step-3-button {
+    width: fit-content;
+    padding: 10px 25px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #0059fc, #104cba);
+    font-size: 20px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    color: var(--white);
+    transition: all 0.3s ease-in-out;
+}
+
+.scrub-container .step-3-button:hover {
+    background: linear-gradient(to right, #104cba, #0059fc);
+}
+
+.scrub-container .step-3-button span {
+    font-size: 22px;
+    font-weight: 600;
+}

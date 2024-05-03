@@ -14,12 +14,26 @@
     --box-shadow-secondary: 0 6px 12px rgba(0, 0, 0, 0.175);
     --box-shadow-extra: 0 5px 50px 0 rgba(0, 0, 0, 0.15);
     --box-shadow-dark: 0px 0px 0px;
-    --bg-light-blue: #aec4f7;
+}
+
+section {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+    background-color: transparent;
+}
+
+.show {
+    display: block !important;
 }
 
 .link-box {
     display: inline-block;
-    padding: 5px 20px 0 20px;
+    padding: 5px 20px 5px 20px;
     border-radius: 5px;
     background: linear-gradient(to right, #0059fc, #104cba);
     color: var(--white);
@@ -40,7 +54,7 @@
 
 .link-box-danger {
     display: inline-block;
-    padding: 5px 20px 0 20px;
+    padding: 5px 20px 5px 20px;
     border-radius: 5px;
     background: linear-gradient(to right, #fc0000, #ba1010);
     color: var(--white);
@@ -144,7 +158,7 @@
 }
 
 .bg-light-blue {
-    background: var(--bg-light-blue);
+    background-color: rgba(113, 137, 179, 0.1);
 }
 
 .success {

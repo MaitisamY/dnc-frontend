@@ -12,12 +12,14 @@ function Header() {
     const { user } = useUser()
     const { pathname } = useLocation()
 
+    // Set Page Title
     if (pathname === '/') {
         document.title = 'DNC Litigator Check | Home'
     } else {
         document.title = 'DNC Litigator Check | ' + pathname.charAt(1).toUpperCase() + pathname.slice(2)
     }
 
+    // Logout Handler
     const handleLogout = async () => {
     
         try {
