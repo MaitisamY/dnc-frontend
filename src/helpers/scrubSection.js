@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from 'react'
+import { toast } from 'react-toastify'
+import axios from 'axios'
 
 export const useScrubSection = () => {
 
@@ -7,13 +9,16 @@ export const useScrubSection = () => {
     const [tcpa, setTcpa] = useState(0)
     const [complainers, setComplainers] = useState(0)
     const [federal, setFederal] = useState(0)
-    const [state, setState] = useState(0)
+    const [stateDNC, setStateDNC] = useState(0)
     const [NRA, setNRA] = useState(true)
 
     const [fileName, setFileName] = useState(null);
     const [isDragging, setIsDragging] = useState(false)
 
+    const [errors, setErrors] = useState({})
+
     const [isDropped, setIsDropped] = useState(false)
+    const dropdownRef = useRef(null);
 
     const handleIsDropped = () => {
         setIsDropped(!isDropped)
@@ -49,8 +54,8 @@ export const useScrubSection = () => {
         setFederal(e.target.value)
     }
 
-    const handleStateChange = (e) => {
-        setState(e.target.value)
+    const handleStateDNCChange = (e) => {
+        selectedItems.length > 0 ? setStateDNC(1) : setStateDNC(0)
     }
 
     const handleDragOver = (e) => {
@@ -81,17 +86,74 @@ export const useScrubSection = () => {
         document.getElementById('fileInput').click();
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (tcpa === 0 && complainers === 0 && federal === 0 && stateDNC === 0) {
+            setErrors({
+                zeroSelection: 'Please select at least one option'
+            })
+            return
+        }
+        if (!fileName) {
+            setErrors({
+                fileError: 'Please select a file'
+            })
+            return
+        }
+
+        try {
+            const formData = new FormData();
+            formData.append('file', fileName);
+            formData.append('tcpa', tcpa);
+            formData.append('complainers', complainers);
+            formData.append('federal', federal);
+            formData.append('stateDNC', stateDNC);
+            formData.append('NRA', NRA);
+
+            const response = await axios.post('/api/scrub', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+        } catch (error) {
+            toast.error(error.response.data.message, {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        }
+    }
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsDropped(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return {
         tab,
         fileName,
         tcpa,
         complainers,
         federal,
-        state,
+        stateDNC,
         NRA,
         isDragging,
         selectedItems,
         isDropped,
+        dropdownRef,
         handleNRAChange,
         setSelectedItems,
         handleIsDropped,
@@ -99,7 +161,7 @@ export const useScrubSection = () => {
         handleTcpaChange,
         handleComplainersChange,
         handleFederalChange,
-        handleStateChange,
+        handleStateDNCChange,
         handleTab,
         handleDragOver,
         handleDragLeave,
