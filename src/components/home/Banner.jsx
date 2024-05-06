@@ -17,9 +17,9 @@ function Banner() {
                                         <p>
                                             Affixed pretend account ten natural. Need eat week even yet that. Incommode delighted he resolving sportsmen do in listening.
                                         </p>
-                                        <Link className="link" to="/prices-benefits">
+                                        {/* <Link className="link" to="/prices-benefits">
                                             View Prices
-                                        </Link>
+                                        </Link> */}
                                     </div>
                                 </div>
                             </div>
