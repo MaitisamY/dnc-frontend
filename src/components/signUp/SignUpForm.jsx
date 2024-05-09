@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useUser } from '../../hooks/useUserProvider'
-import { useSignUp } from '../../helpers/signUpHelper'
+import { useSignUp } from '../../helpers/signUp.js'
 
 function SignUpForm() {
 

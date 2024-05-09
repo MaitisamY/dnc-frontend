@@ -40,7 +40,11 @@ section {
 }
 
 .active-dashed-border {
-    border: 2px dashed #0e409a;
+    border: 2px dashed #108d10;
+}
+
+.error-dashed-border {
+    border: 2px dashed #fc0000;
 }
 
 .link-box {
@@ -137,6 +141,30 @@ section {
     hyphens: auto;
 }
 
+.text-decoration-none {
+    text-decoration: none;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.outline-red {
+    outline: 3px solid #fc0000a4;
+}
+
+.text-blue {
+    color: #104cba;
+}
+
+.text-green {
+    color: #108d10;
+}
+
+.text-red {
+    color: #fc0000;
+}
+
 .text-italic {
     font-style: italic;
 }
@@ -191,6 +219,22 @@ section {
     animation: pulse 500ms ease;
 }
 
+.light-border-top {
+    border-top: 1px solid rgba(170, 170, 170, 0.5);
+}
+
+.light-border-right {
+    border-right: 1px solid rgba(170, 170, 170, 0.5);
+}
+
+.light-border-bottom {
+    border-bottom: 1px solid rgba(170, 170, 170, 0.5);
+}
+
+.light-border-left {
+    border-left: 1px solid rgba(170, 170, 170, 0.5);
+}
+
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -207,7 +251,7 @@ section {
 
 .loader {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 20px;
