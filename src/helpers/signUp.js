@@ -157,7 +157,7 @@ export const useSignUp = () => {
 
             try {
 
-                const response = await axios.post('https://dnc-backend.vercel.app/signup', {
+                const response = await axios.post('http://localhost:3000/signup', {
                     name: name,
                     email: email,
                     phone: phone,
