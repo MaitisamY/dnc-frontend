@@ -202,7 +202,7 @@ export const useScrubSection = () => {
 
             try {
         
-                const response = await axios.post('http://localhost:3000/scrub', formData, {
+                const response = await axios.post('https://dnc-backend.vercel.app/scrub', formData, {
                     params: {
                         column: column,
                         options: options,
@@ -260,7 +260,7 @@ export const useScrubSection = () => {
 
     const getScrubItems = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/scrub/items');
+            const response = await axios.get('https://dnc-backend.vercel.app/scrub/items');
 
             setScrubItems(response.data.data);
         } catch (error) {
