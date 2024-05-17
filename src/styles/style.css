@@ -2806,14 +2806,13 @@ a {
   justify-content: flex-start;
   flex-direction: column;
   gap: 20px;
-  width: 70%;
   height: auto;
   min-height: 500px;
-  margin: 100px 0 0 0;
+  margin: 50px 0 50px 0;
 }
 
 .title-area h2 {
-  font-size: 60px;
+  font-size: 45px;
 }
 
 .title-area h2 i {
@@ -2828,7 +2827,8 @@ a {
 }
 
 .title-area p {
-  font-size: 40px;
+  font-size: 30px;
+  margin: 0 0 50px 0;
 }
 
 .title-area .link {

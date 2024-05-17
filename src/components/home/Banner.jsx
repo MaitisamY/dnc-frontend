@@ -15,11 +15,10 @@ function Banner() {
                                     <div className="title-area">
                                         <h2><i>Transform every</i> <strong>Technical process</strong></h2>
                                         <p>
-                                            Affixed pretend account ten natural. Need eat week even yet that. Incommode delighted he resolving sportsmen do in listening.
+                                            Affixed pretend account ten natural. Need eat week even yet that.
+                                            <br /> 
+                                            Incommode delighted he resolving sportsmen do in listening.
                                         </p>
-                                        {/* <Link className="link" to="/prices-benefits">
-                                            View Prices
-                                        </Link> */}
                                     </div>
                                 </div>
                             </div>

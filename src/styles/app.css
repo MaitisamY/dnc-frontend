@@ -272,6 +272,24 @@ section {
     place-self: center;
 }
 
+.popup-button {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 5px;
+    background-color: #0059FC;
+    padding: 4px 8px;
+    border-radius: 5px;
+    white-space: nowrap;
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.3);
+}
+
+.popup-button:hover {
+    color: white;
+    background-color: #104cba;
+}
+
 @keyframes spin {
     0% { -webkit-transform: rotate(0deg); }
     100% { -webkit-transform: rotate(360deg); }

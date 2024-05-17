@@ -9,9 +9,9 @@ import ScrubSection from '../components/dashboard/ScrubSection'
 
 function Dashboard() {
 
-    const { user } = useUser()
+    const { token } = useUser()
 
-    if (!user) {
+    if (!token) {
         return (
             <>
                 <Header />

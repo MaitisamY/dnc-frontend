@@ -11,7 +11,7 @@ import TcpaPerState from './TcpaPerState'
 import SuppressionList from './SuppressionList'
 import ScrubItems from './scrubSection/scrubItems'
 
-import { useScrubSection } from '../../helpers/scrubSection.js'
+import { useScrubSection } from '../../helpers/scrubSection'
 import { STATES } from '../../utils/usaStates.js'
  
 function ScrubSection() {
@@ -74,24 +74,11 @@ function ScrubSection() {
                         >
                             <FiInfo size={20} /> Scrub Requirements
                         </a>
-                        {/* <a 
-                            className={`pill ${tab === 2 ? 'active' : ''}`} 
-                            onClick={() => tab === 2 ? handleTab(0) : handleTab(2)}
-                        
-                        >
-                            <CgAlbum size={20} /> TCPA Per State
-                        </a>
-                        <a 
-                            className={`pill ${tab === 3 ? 'active' : ''}`} 
-                            onClick={() => tab === 3 ? handleTab(0) : handleTab(3)}
-                        >
-                            <CgList size={20} /> My Suppression List
-                        </a> */}
                     </div>
                 </div>
 
                 {
-                    tab === 1 ? <ScrubReq /> : tab === 2 ? <TcpaPerState /> : tab === 3 ? <SuppressionList /> : null
+                    tab === 1 ? <ScrubReq /> : null
                 }
 
                 <form onSubmit={handleSubmit}>
@@ -161,12 +148,12 @@ function ScrubSection() {
 
                                 <div className="scrub-info-container">
                                     <h4>File extension allowed: <span className="text-green">.csv</span></h4>
-                                    <a 
+                                    {/* <a 
                                         className={`pill-referer ${tab === 1 ? 'active' : ''}`} 
                                         onClick={() => tab === 1 ? handleTab(0) : handleTab(1)}
                                     >
                                         Learn more
-                                    </a>
+                                    </a> */}
                                 </div>
 
                             </div>
@@ -335,13 +322,7 @@ function ScrubSection() {
 
                                             <div className="scrub-info">
                                                 <p>
-                                                    Federal DNC is State independent. 
-                                                    <a 
-                                                        onClick={() => tab === 1 ? handleTab(0) : handleTab(1)}
-                                                        style={{ cursor: 'pointer', color: '#0059fc' }}
-                                                    >
-                                                        Learn more!
-                                                    </a>
+                                                    One of the above options should must be selected. 
                                                 </p>
                                             </div>
 

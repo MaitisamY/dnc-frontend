@@ -1,16 +1,26 @@
 import '../styles/header.css'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { FaFacebook, FaLinkedin, FaPinterest, FaRegClock, FaChevronDown,FaCommentsDollar, FaBars } from 'react-icons/fa'
+import { 
+    FaFacebook, 
+    FaLinkedin, 
+    FaPinterest, 
+    FaRegClock, 
+    FaChevronDown, 
+    FaCommentsDollar, 
+    FaBars 
+} from 'react-icons/fa'
 import { useUser } from '../hooks/useUserProvider'
-import { toast } from 'react-toastify'
 import axios from 'axios'
-
+import { FaCoins } from 'react-icons/fa'
+ 
 function Header() {
 
     const { user } = useUser()
     const { pathname } = useLocation()
+
+    const [coins, setCoins] = useState(0)
 
     // Set Page Title
     if (pathname === '/') {
@@ -25,12 +35,33 @@ function Header() {
         try {
             await axios.post('http://localhost:3000/logout')
     
-            localStorage.removeItem('user')
+            localStorage.clear()
             window.location.href = '/login';
         } catch (error) {
             console.log(error)
         }
     }
+
+    const getCoins = async () => {
+
+        try {
+
+            const response = await axios.get(`http://localhost:3000/coins`, {
+                params: {
+                    user: user.id
+                }
+            })
+
+            setCoins(response.data.coins)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        getCoins()
+    }, [coins, user])
 
     return (
         <>
@@ -121,6 +152,16 @@ function Header() {
                             {user.name} <FaChevronDown />
                             <div className="dropdown-menu">
                                 <ul>
+                                    <li style={{ cursor: 'text' }}>
+                                        { 
+                                            coins && 
+                                            <span style={{ display: 'flex', alignItems: 'center', fontSize: '20px', color: '#dead2e' }}>
+                                                <FaCoins size={24} /> 
+                                                &nbsp;
+                                                {coins} 
+                                            </span>
+                                        }
+                                    </li>
                                     <li>
                                         <Link className="link" to="/dashboard">
                                             Dashboard
@@ -128,7 +169,7 @@ function Header() {
                                     </li>
                                     <li>
                                         <Link className="link" to="/purchase-coins">
-                                            Purchase more scrub coins
+                                            Purchase coins
                                         </Link>
                                     </li>
                                     <li>

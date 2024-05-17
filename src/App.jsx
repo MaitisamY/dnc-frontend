@@ -2,10 +2,12 @@ import './styles/app.css'
 
 import { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { UserProvider } from './hooks/useUserProvider';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { UserProvider } from './hooks/useUserProvider'
+import AdminProviderWrapper from './components/admin/AdminProviderWrapper'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
+// User pages
 const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
 const PriceAndBenefit = lazy(() => import('./pages/PriceAndBenefit'))
@@ -18,6 +20,10 @@ const Contact = lazy(() => import('./pages/Contact'))
 const Login = lazy(() => import('./pages/Login'))
 const SignUp = lazy(() => import('./pages/SignUp'))
 const Dashboard = lazy(() => import('./pages/Dashboard'))
+
+// Admin pages
+const AdminLogin = lazy(() => import('./pages/admin/Login'))
+const AdminDashboard = lazy(() => import('./pages/admin/Dashboard'))
 
 function App() {
     return (
@@ -38,6 +44,12 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/dashboard" element={<Dashboard />} />
+
+                        {/* Admin routes wrapped with AdminProvider */}
+                        <Route element={<AdminProviderWrapper />}>
+                            <Route path="/admin/login" element={<AdminLogin />} />
+                            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                        </Route>
                     </Routes>
                 </UserProvider>
             </Router>

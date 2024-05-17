@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { STATES } from '../../../utils/usaStates.js';
 import { MdCheckBoxOutlineBlank, MdCheckBox, MdOutlineFileDownload } from 'react-icons/md';
 import { FaTrashAlt, FaCogs, FaFileAlt } from 'react-icons/fa';
+import { CiCoins1 } from 'react-icons/ci';
 import { saveAs } from 'file-saver';
-import axios from 'axios';
 
 function ScrubItems({ scrubItems }) {
 
@@ -61,8 +61,12 @@ function ScrubItems({ scrubItems }) {
         return stateNames.join(', '); // Join state names with comma and space
     };
 
-    const downloadMatchingFile =  (fileName) => {
-        fetch(`http://localhost:3000/download/matching-file/${encodeURIComponent(fileName)}`)
+    const downloadMatchingFile = (fileName) => {
+        console.log('downloading matching file:', fileName);
+        if (fileName === '') {
+            return;
+        }
+        fetch(`http://localhost:3000/download/matching-file/${fileName}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -70,7 +74,7 @@ function ScrubItems({ scrubItems }) {
                 return response.blob();
             })
             .then(blob => {
-                saveAs(blob, fileName);
+                saveAs(blob, fileName); // Assuming saveAs is properly imported
             })
             .catch(error => {
                 console.error('Error downloading matching file:', error);
@@ -78,7 +82,11 @@ function ScrubItems({ scrubItems }) {
     }
     
     const downloadNonMatchingFile = (fileName) => {
-        fetch(`http://localhost:3000/download/non-matching-file/${encodeURIComponent(fileName)}`)
+        console.log('downloading non-matching file:', fileName);
+        if (fileName === '') {
+            return;
+        }
+        fetch(`http://localhost:3000/download/non-matching-file/${fileName}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -86,14 +94,18 @@ function ScrubItems({ scrubItems }) {
                 return response.blob();
             })
             .then(blob => {
-                saveAs(blob, fileName);
+                saveAs(blob, fileName); // Assuming saveAs is properly imported
             })
             .catch(error => {
                 console.error('Error downloading non-matching file:', error);
             });
     }
-
+    
     const downloadUploadedFile = (fileName) => {
+        console.log('downloading uploaded file:', fileName);
+        if (fileName === '') {
+            return;
+        }
         fetch(`http://localhost:3000/download/uploaded-file/${encodeURIComponent(fileName)}`)
             .then(response => {
                 if (!response.ok) {
@@ -102,12 +114,13 @@ function ScrubItems({ scrubItems }) {
                 return response.blob();
             })
             .then(blob => {
-                saveAs(blob, fileName);
+                saveAs(blob, fileName); // Assuming saveAs is properly imported
             })
             .catch(error => {
                 console.error('Error downloading file:', error);
             });
     }
+    
 
     return (
         <>
@@ -154,9 +167,10 @@ function ScrubItems({ scrubItems }) {
                                     </th>
                                     <th>#</th>
                                     <th>Date</th>
-                                    <th>Uploaded File</th>
+                                    <th>Execution Time</th>
+                                    {/* <th>Uploaded File</th> */}
                                     <th>Scrub States</th>
-                                    <th>Scrub Options</th>
+                                    <th>Scrub Against</th>
                                     <th>Total Numbers</th>
                                     <th>Clean Numbers</th>
                                     <th>Bad Numbers</th>
@@ -195,7 +209,8 @@ function ScrubItems({ scrubItems }) {
                                         </td>
                                         <td>{scrubItems.indexOf(item) + 1}</td>
                                         <td>{item.date}</td>
-                                        <td>
+                                        <td>{item.execution_time}</td>
+                                        {/* <td>
                                             <a 
                                                 className="file-link" 
                                                 onClick={() => downloadUploadedFile(item.uploaded_file)}
@@ -206,7 +221,7 @@ function ScrubItems({ scrubItems }) {
                                                     item.uploaded_file.slice(-8)
                                                 }
                                             </a>
-                                        </td>
+                                        </td> */}
                                         <td>
                                             {
                                                 getStateNames(item.scrubbed_against_states) ?
@@ -224,7 +239,13 @@ function ScrubItems({ scrubItems }) {
                                         <td>{item.total_numbers}</td>
                                         <td>{item.clean_numbers}</td>
                                         <td>{item.bad_numbers}</td>
-                                        <td>{item.cost}</td>
+                                        <td>
+                                            <span 
+                                                style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '17px' }}
+                                            >
+                                                <img src="/img/cost-coins.png" alt="cost coins image" /> {item.cost}
+                                            </span>
+                                        </td>
                                         <td>
                                             <button 
                                                 className="dropdown-button"

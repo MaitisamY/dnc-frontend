@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import axios from 'axios'
 import { useUser } from '../../hooks/useUserProvider'
+import axios from 'axios'
+import validator from 'validator'
 
 function LoginForm() {
 
-    const { user, updateUser } = useUser()
+    const { token, updateUser, updateToken } = useUser()
 
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
@@ -17,8 +18,6 @@ function LoginForm() {
         emailError: '',
         passwordError: ''
     })
-
-    const [serverResponse, setServerResponse] = useState(null)
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -31,72 +30,99 @@ function LoginForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        if (creds.email === '') {
-            setCreds({
-                ...creds,
+        const { email, password } = creds;
+    
+        if (email === '') {
+            setCreds((prevCreds) => ({
+                ...prevCreds,
                 emailError: 'Please enter your email'
-            });
+            }));
             return;
         }
-        if (creds.email.length < 5) {
-            setCreds({
-                ...creds,
+        if (email.length < 5) {
+            setCreds((prevCreds) => ({
+                ...prevCreds,
+                emailError: 'Email should be at least 5 characters'
+            }));
+            return;
+        }
+        if (!validator.isEmail(email)) {
+            setCreds((prevCreds) => ({
+                ...prevCreds,
                 emailError: 'Please enter a valid email'
-            });
+            }));
             return;
         }
-        if (creds.password === '') {
-            setCreds({
-                ...creds,
+        if (password === '') {
+            setCreds((prevCreds) => ({
+                ...prevCreds,
                 passwordError: 'Please enter your password'
-            });
+            }));
             return;
         }
-        if (creds.password.length < 5) {
-            setCreds({
-                ...creds,
-                passwordError: 'Please enter a valid password'
-            });
+        if (password.length < 5) {
+            setCreds((prevCreds) => ({
+                ...prevCreds,
+                passwordError: 'Password should be at least 5 characters'
+            }));
             return;
         }
-        else {
+    
+        setIsLoading(true);
+        try {
+            const response = await axios.post('http://localhost:3000/login', {
+                email: email,
+                password: password
+            });
 
-            setIsLoading(true);
-            try {
-                const response = await axios.post('http://localhost:3000/login', {
-                    email: creds.email, // Corrected to use creds.email
-                    password: creds.password // Corrected to use creds.password
-                });
+            updateToken(response.data.token);
+    
+            updateUser({
+                id: response.data.data.id,
+                name: response.data.data.name,
+                email: response.data.data.email
+            });
 
-                setServerResponse({ status: response.data.status, message: response.data.message});
-
-                updateUser(response.data.session);
-
-                setTimeout(() => {
-                    navigate('/dashboard')
-                }, 3000);
-                    
-                 
-            } catch (error) {
-                toast.error(error.response.data.message, {
-                    position: "bottom-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark"
-                });
-                setServerResponse({ status: error.response.status, message: error.response.data.message});
-            }
+            console.log(response.data.token);
+            console.log(response.data.data);
+    
+            setTimeout(() => {
+                navigate('/dashboard');
+            }, 3000);
+    
+        } catch (error) {
+            toast.error(error.response.data.error, {
+                position: "bottom-right",
+                autoClose: 6000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark"
+            });
+        } finally {
+            setIsLoading(false);
         }
-
-        setIsLoading(false);
     };
-
-
-    if (user) {
+    
+    useEffect(() => {
+        if (creds.email.length >= 5 && validator.isEmail(creds.email)) {
+            setCreds((prevCreds) => ({
+                ...prevCreds,
+                emailError: ''
+            }));
+        }
+    
+        if (creds.password.length >= 5) {
+            setCreds((prevCreds) => ({
+                ...prevCreds,
+                passwordError: ''
+            }));
+        }
+    }, [creds.email, creds.password]);
+    
+    if (token) {
         navigate('/dashboard')
     }
 
@@ -128,7 +154,7 @@ function LoginForm() {
                                                 className="form-control custom-input"  
                                                 name="email" 
                                                 placeholder="Enter registered email" 
-                                                type="email"
+                                                type="text"
                                                 value={creds.email}
                                                 onChange={handleChange}
                                             />
@@ -176,6 +202,7 @@ function LoginForm() {
                                             className="btn btn-gradient" 
                                             name="submit"  
                                             style={{ width: '100%' }}
+                                            disabled={isLoading}
                                         >
                                             {
                                                 isLoading ? (
@@ -199,14 +226,6 @@ function LoginForm() {
                                 <div className="col-lg-12 alert-notification">
                                     <div id="message" className="alert-msg"></div>
                                 </div>
-                                {
-                                    serverResponse && 
-                                    <p 
-                                        className={serverResponse.status === 200 ? 'success' : 'error'}
-                                    >
-                                        {serverResponse.message}
-                                    </p>
-                                }
                             </form>
                         </div>
                     </div>
