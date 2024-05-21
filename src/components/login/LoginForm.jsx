@@ -82,9 +82,6 @@ function LoginForm() {
                 name: response.data.data.name,
                 email: response.data.data.email
             });
-
-            console.log(response.data.token);
-            console.log(response.data.data);
     
             setTimeout(() => {
                 navigate('/dashboard');

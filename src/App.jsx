@@ -24,6 +24,8 @@ const Dashboard = lazy(() => import('./pages/Dashboard'))
 // Admin pages
 const AdminLogin = lazy(() => import('./pages/admin/Login'))
 const AdminDashboard = lazy(() => import('./pages/admin/Dashboard'))
+const AdminScrubHistory = lazy(() => import('./pages/admin/ScrubHistory'))
+const AdminUsers = lazy(() => import('./pages/admin/Users'))
 
 function App() {
     return (
@@ -49,6 +51,8 @@ function App() {
                         <Route element={<AdminProviderWrapper />}>
                             <Route path="/admin/login" element={<AdminLogin />} />
                             <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                            <Route path="/admin/scrub-history" element={<AdminScrubHistory />} />
+                            <Route path="/admin/users" element={<AdminUsers />} />
                         </Route>
                     </Routes>
                 </UserProvider>

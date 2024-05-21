@@ -1,0 +1,622 @@
+.admin {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-family: "Radio Canada Big", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--light-text-color);
+    background-color: var(--light-bg-color);
+}
+
+.admin.dark {
+    color: var(--dark-text-color);
+    background-color: var(--dark-bg-color);
+}
+
+.admin header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 0;
+    padding: 20px 50px 20px 50px;
+    margin: 0;
+    border-bottom: 1px solid var(--light-border-color);
+}
+
+.admin.dark header {
+    border-bottom: 1px solid var(--dark-border-color);
+}
+
+.admin header .link-group {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 25px;
+    padding: 0;
+    margin: 0;
+}
+
+.admin header .link-group .profile-dropdown {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    margin: 0;
+    position: absolute;
+    top: 170%;
+    right: 0;
+    background-color: rgba(0,0,0,0.05);
+    backdrop-filter: blur(8px);
+    width: auto;
+    min-width: 250px;
+    height: auto;
+    border-top: none;
+    border-right: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-left: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    z-index: 9999999999;
+    font-size: 14px;
+    border-radius: 0 0 10px 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.admin header .link-group .profile-dropdown::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    right: 3px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgba(0,0,0,0.05);
+}
+
+.admin.dark header .link-group .profile-dropdown {
+    background-color: rgba(255,255,255,0.05);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    border-top: none;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+.admin.dark header .link-group .profile-dropdown::after {
+    border-bottom: 10px solid rgba(255,255,255,0.1);
+}
+
+.admin header .link-group .profile-dropdown .content,
+.admin.dark header .link-group .profile-dropdown .content {
+    width: 100%;
+    height: auto;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 0 20px 0;
+    margin: 0;
+}
+
+.admin header .link-group .profile-dropdown .content h3 {
+    font-size: 18px;
+    color: var(--light-text-color);
+    font-weight: 500;
+    padding: 0;
+    margin: 10px 0 0 0;
+}
+
+.admin.dark header .link-group .profile-dropdown .content h3 {
+    color: var(--dark-text-color);
+}
+
+.admin header .link-group .profile-dropdown .content i {
+    width: auto;
+    height: auto;
+    color: var(--light-text-color);
+    font-weight: 500;
+    padding: 2px;
+    margin: 0;
+    border-radius: 50%;
+    border: 2px solid var(--light-text-color);
+}
+
+.admin.dark header .link-group .profile-dropdown .content i {
+    color: var(--dark-text-color);
+    border: 2px solid var(--dark-text-color);
+}
+
+.admin header .link-group .profile-dropdown .content h3 span {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 3px 6px;
+    border-radius: 5px;
+    background-color: #1C1678;
+    color: white;
+    margin: 0;
+}
+
+.admin header .link-group .profile-dropdown .content h5 {
+    font-size: 15px;
+    color: var(--light-text-color);
+    font-weight: 300;
+    padding: 0;
+    margin: 5px 0 0 0;
+}
+
+.admin.dark header .link-group .profile-dropdown .content h5 {
+    color: var(--dark-text-color);
+    font-weight: 300;
+}
+
+.admin header .link-group .profile-dropdown .logout-button {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+    padding: 10px;
+    margin: 0;
+    background-color: #f00;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.admin header .link-group .profile-dropdown .logout-button:hover {
+    background-color: rgb(230, 3, 3);
+}
+
+.admin header .link-group .profile-dropdown .logout-button span {
+    transition: transform 0.3s ease-in-out; 
+}
+
+.admin header .link-group .profile-dropdown .logout-button:hover span {
+    transform: translateX(5px);
+}
+
+
+.admin header .link {
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    opacity: 0.87;
+    color: var(--light-text-color);
+}
+
+.admin.dark header .link {
+    color: var(--dark-text-color);
+}
+
+.admin header .link:hover {
+    opacity: 1;
+}
+
+.admin header .link.active {
+    opacity: 1;
+    color: #8576FF;
+}
+
+.admin header .link.red {
+    color: #ff0000b2;
+}
+
+.admin header .link.red:hover {
+    color: #f00;
+}
+
+.admin main {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.admin main .link-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 25px;
+    padding: 0;
+    margin: 0;
+}
+
+.admin main .col-one {
+    position: sticky;
+    top: 0;
+    width: 15%;
+    height: 92vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 0;
+    padding: 20px 5px 20px 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-right: 1px solid var(--light-border-color);
+}
+
+.admin.dark main .col-one {
+    border-right: 1px solid var(--dark-border-color);
+}
+
+.admin main .col-one ul {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.admin main .col-one ul li {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.admin main .col-one ul li .link {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    padding: 15px 30px 15px 20px;
+    opacity: 0.87;
+    color: var(--light-text-color);
+    border-radius: 0 10px 10px 0;
+    white-space: nowrap;
+    font-family: "Radio Canada Big", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.admin.dark main .col-one ul li .link {
+    color: var(--dark-text-color);
+}
+
+.admin main .col-one ul li .link:hover {
+    opacity: 1;
+    color: #8576FF;
+}
+
+.admin main .col-one ul li .link.active {
+    background-color: #8576FF;
+    border-radius: 0 10px 10px 0;
+    color: white;
+}
+
+.admin main .col-two {
+    width: 85%;
+    height: 92vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0 20px 20px;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.admin main .col-two h1 {
+    width: 100%;
+    font-size: 22px;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--light-text-color);
+    font-family: "Radio Canada Big", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.admin.dark main .col-two h1 {
+    color: var(--dark-text-color);
+}
+
+.admin main .col-two .scrub-history-cards-holder {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.admin main .col-two .scrub-history-cards-holder .pills {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 50px;
+    margin: 0;
+}
+
+.admin main .col-two .scrub-history-cards-holder .pills .link {
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    opacity: 0.87;
+    color: var(--light-text-color);
+}
+
+.admin.dark main .col-two .scrub-history-cards-holder .pills .link {
+    color: var(--dark-text-color);
+}
+
+.admin main .col-two .scrub-history-cards-holder .pills .link:hover {
+    opacity: 1;
+}
+
+.admin main .col-two .scrub-history-cards-holder .pills .link.active {
+    opacity: 1;
+    color: #8576FF;
+}
+
+.admin main .col-two .scrub-history-card {
+    position: relative;
+    height: auto;
+    min-height: 200px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+    margin: 15px 0;
+    border-radius: 10px;
+    border: 1px solid var(--light-border-color);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out, outline 0.3s ease-in-out, all 0.3s ease-in-out;
+    box-sizing: border-box;
+    outline: 3px solid #8576FF;
+    outline-offset: 2px;
+}
+
+.admin main .col-two .scrub-history-card::-webkit-scrollbar {
+    width: 7px;
+    border-radius: 0 10px 10px 0;
+}
+
+.admin main .col-two .scrub-history-card::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0,0.0);
+    border-radius: 0 10px 10px 0;
+}
+
+.admin main .col-two .scrub-history-card::-webkit-scrollbar-thumb {
+    background-color: var(--light--scrollbar-thumb-color);
+    border-radius: 0 10px 10px 0;
+}
+
+.admin.dark main .col-two .scrub-history-card::-webkit-scrollbar-thumb {
+    background-color: var(--dark--scrollbar-thumb-color);
+    border-radius: 0 10px 10px 0;
+}
+
+.admin.dark main .col-two .scrub-history-card {
+    border: 1px solid var(--dark-border-color);
+}
+
+.admin main .col-two .scrub-history-card:hover {
+    transform: translateY(-10px);
+}
+
+.admin main .col-two .scrub-history-card .overlay {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+    border-radius: 0 0 10px 10px;
+}
+
+.admin main .col-two .scrub-history-card:hover .overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.admin main .col-two .scrub-history-card .overlay .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 5px 10px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    opacity: 0.87;
+    color: white;
+    background-color: #8576FF;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out !important;
+}
+
+.admin main .col-two .scrub-history-card .overlay .link:hover {
+    opacity: 1;
+}
+
+@media screen and (max-width: 767px) {
+    .admin main .col-two .scrub-history-cards-holder {
+        flex-direction: column;
+    }
+
+    .admin main .col-two .scrub-history-card {
+        width: 90%;
+    }
+}
+
+.admin main .col-two .scrub-history-card .scrub-history-card-header {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    padding: 20px 50px;
+    margin: 0;
+    background-color: #A3FFD6;
+    border-radius: 10px 10px 0 0;
+}
+
+.admin main .col-two .scrub-history-card .scrub-history-card-header span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    background-color: #8576FF;
+    border-radius: 0 5px 0 0;
+    padding: 5px 10px;
+    font-family: "Radio Canada Big", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.admin main .col-two .scrub-history-card .scrub-history-card-header i {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+    font-size: 22px;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    background-color: #8576FF;
+    padding: 10px;
+    font-family: "Radio Canada Big", sans-serif;
+    font-optical-sizing: auto;
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+}
+
+.admin main .col-two .scrub-history-card .scrub-history-card-body {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px;
+    margin: 0;
+}
+
+.admin main .col-two .scrub-history-card .scrub-history-card-body table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.admin main .col-two .scrub-history-card .scrub-history-card-body table th {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 5px;
+}
+
+.admin main .col-two .scrub-history-card .scrub-history-card-body table td {
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 5px;
+}
+
+.admin main .col-two .scrub-history-card .scrub-history-card-body table td.left {
+    text-align: left;
+    font-weight: bold;
+    padding: 10px 5px;
+}
+
+.admin main .col-two .scrub-history-card .scrub-history-card-body table td.right {
+    text-align: right;
+    font-size: 15px;
+    padding: 10px 5px;
+}
+    

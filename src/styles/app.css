@@ -14,6 +14,16 @@
     --box-shadow-secondary: 0 6px 12px rgba(0, 0, 0, 0.175);
     --box-shadow-extra: 0 5px 50px 0 rgba(0, 0, 0, 0.15);
     --box-shadow-dark: 0px 0px 0px;
+
+    --light-text-color: #000000;
+    --light-bg-color: #ffffff;
+    --light-border-color: #00000034;
+    --dark-text-color: #ffffff;
+    --dark-bg-color: #272626;
+    --dark-border-color: #ffffff34;
+
+    --light--scrollbar-thumb-color: rgba(0, 0, 0, 0.1);
+    --dark--scrollbar-thumb-color: rgba(255, 255, 255, 0.1);
 }
 
 section {
@@ -308,4 +318,18 @@ section {
 @keyframes slideInRight {
     0% { -webkit-transform: translateX(100%); }
     100% { -webkit-transform: translateX(0); }
+}
+
+.bar-chart {
+    width: 70%;
+    max-width: 600px; 
+    height: 400px; 
+    margin: 0; 
+}
+
+.pie-chart {
+    width: 30%;
+    max-width: 600px; 
+    height: 400px; 
+    margin: 0;
 }

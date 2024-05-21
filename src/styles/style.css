@@ -117,7 +117,7 @@ pre {
     line-height: 1.42857143;
 }
 
-input {
+/* input {
     border: 1px solid #e7e7e7;
     border-radius: inherit;
     -webkit-box-shadow: inherit;
@@ -129,7 +129,7 @@ input:focus {
     outline: none;
     -webkit-box-shadow: inherit;
             box-shadow: inherit;
-}
+} */
 
 textarea:focus {
     outline: none;
