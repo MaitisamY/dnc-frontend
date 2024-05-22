@@ -49,7 +49,7 @@ function App() {
 
                         {/* Admin routes wrapped with AdminProvider */}
                         <Route element={<AdminProviderWrapper />}>
-                            <Route path="/admin/login" element={<AdminLogin />} />
+                            <Route path="/admin" element={<AdminLogin />} />
                             <Route path="/admin/dashboard" element={<AdminDashboard />} />
                             <Route path="/admin/scrub-history" element={<AdminScrubHistory />} />
                             <Route path="/admin/users" element={<AdminUsers />} />

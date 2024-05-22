@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useTheme } from '../../hooks/adminThemeProvider'
 import { STATES } from '../../utils/usaStates.js'
 import { MdFormatListBulleted, MdGridView, MdDownload } from 'react-icons/md'
+import { motion } from 'framer-motion'
 import axios from 'axios'
 
 import Header from '../../components/admin/Header'
@@ -46,6 +47,43 @@ function AdminScrubHistory () {
             }
         });
         return stateNames.join(', '); // Join state names with comma and space
+    }
+
+    const getCircleClass = (number) => {
+        const length = number.toString().length;
+        if (length <= 4) {
+            return 'small-circle';
+        } else if (length === 5) {
+            return 'medium-circle';
+        } else {
+            return 'large-circle';
+        }
+    }
+
+    const containerVariants = {
+        hidden: {
+            opacity: 0,
+            x: -20,
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                delayChildren: 0.5,
+                staggerChildren: 0.1,
+            },
+        },
+    };
+
+    const itemVariants = {
+        hidden: {
+            opacity: 0,
+            x: -150,
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+        },
     };
 
     document.title = 'Scrub History | Admin'
@@ -80,35 +118,45 @@ function AdminScrubHistory () {
                             <div 
                                 key={index} 
                                 className="scrub-history-card"
-                                style={{ width: view === 1 ? '31%' : '95%' }}
+                                style={{ width: view === 1 ? '23%' : '95%' }}
                             >
 
-                                <div className="overlay">
-                                    <a 
-                                        className="link" 
+                                <motion.div
+                                    className="overlay"
+                                    initial="hidden"
+                                    whileHover="visible"
+                                    variants={containerVariants}
+                                >
+                                    <motion.a
+                                        className="link"
                                         href={`http://localhost:3000/uploads/${item.uploaded_file}`}
                                         download
+                                        variants={itemVariants}
                                     >
                                         File by client <MdDownload size={18} />
-                                    </a>
-                                    <a 
+                                    </motion.a>
+                                    <motion.a
                                         className="link"
                                         href={`http://localhost:3000/uploads/${item.matching_file}`}
                                         download
+                                        variants={itemVariants}
                                     >
                                         Matching records <MdDownload size={18} />
-                                    </a>
-                                    <a 
+                                    </motion.a>
+                                    <motion.a
                                         className="link"
                                         href={`http://localhost:3000/uploads/${item.non_matching_file}`}
                                         download
+                                        variants={itemVariants}
                                     >
                                         Non matching records <MdDownload size={18} />
-                                    </a>
-                                </div>
+                                    </motion.a>
+                                </motion.div>
 
                                 <div className="scrub-history-card-header">
-                                    <i>{scrubItems.indexOf(item) + 1}</i>
+                                    <i className={getCircleClass(scrubItems.indexOf(item) + 1)}>
+                                        {scrubItems.indexOf(item) + 1}
+                                    </i>
                                     <h4 style={{ marginTop: '5px' }}>{item.user_name}</h4>
                                     <span><img src="/img/cost-coins.png" alt="cost coins image" /> {item.cost}</span>
                                 </div>
@@ -120,7 +168,7 @@ function AdminScrubHistory () {
                                                 <tbody>
                                                     <tr>
                                                         <td className="left">
-                                                            Date
+                                                            Date:
                                                         </td>
                                                         <td className="right">
                                                             {item.date}
@@ -129,7 +177,7 @@ function AdminScrubHistory () {
 
                                                     <tr>
                                                         <td className="left">
-                                                            Execution Time 
+                                                            Execution Time:
                                                         </td>
                                                         <td className="right">
                                                             {item.execution_time}
@@ -151,7 +199,7 @@ function AdminScrubHistory () {
 
                                                     <tr>
                                                         <td className="left">
-                                                            Option(s)
+                                                            Option(s):
                                                         </td>
                                                         <td className="right">
                                                             {
@@ -164,7 +212,7 @@ function AdminScrubHistory () {
 
                                                     <tr>
                                                         <td className="left">
-                                                            Total Numbers
+                                                            Total Numbers:
                                                         </td>
                                                         <td className="right">
                                                             {item.total_numbers}
@@ -173,7 +221,7 @@ function AdminScrubHistory () {
 
                                                     <tr>
                                                         <td className="left">
-                                                            Clean Numbers
+                                                            Clean Numbers:
                                                         </td>
                                                         <td className="right">
                                                             {item.clean_numbers}
@@ -182,7 +230,7 @@ function AdminScrubHistory () {
 
                                                     <tr>
                                                         <td className="left">
-                                                            Bad Numbers
+                                                            Bad Numbers:
                                                         </td>
                                                         <td className="right">
                                                             {item.bad_numbers}

@@ -1,28 +1,33 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react';
 
-const AdminContext = createContext()
+const AdminContext = createContext();
 
 export const useTheme = () => {
-    return useContext(AdminContext)
-}
+    return useContext(AdminContext);
+};
 
 const AdminThemeProvider = ({ children }) => {
-    const [theme, setTheme] = useState(localStorage.getItem('theme') ? JSON.parse(localStorage.getItem('theme')) : 'light')
+    const getInitialTheme = () => {
+        return localStorage.getItem('theme') || 'light';
+    };
+
+    const [theme, setTheme] = useState(getInitialTheme);
 
     const toggleTheme = () => {
-        localStorage.setItem('theme', JSON.stringify(theme === 'light' ? 'dark' : 'light'))
-        setTheme(theme === 'light' ? 'dark' : 'light')
-    }
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        localStorage.setItem('theme', newTheme);
+        setTheme(newTheme);
+    };
 
     useEffect(() => {
-        localStorage.setItem('theme', JSON.stringify(theme))
-    }, [theme])
+        localStorage.setItem('theme', theme);
+    }, [theme]);
 
     return (
         <AdminContext.Provider value={{ theme, toggleTheme }}>
             {children}
         </AdminContext.Provider>
-    )
-}
+    );
+};
 
-export default AdminThemeProvider
+export default AdminThemeProvider;

@@ -333,3 +333,27 @@ section {
     height: 400px; 
     margin: 0;
 }
+
+.small-circle {
+    width: 60px;  
+    height: 60px; 
+    line-height: 60px;
+    top: -25px;
+    left: -25px; 
+}
+
+.medium-circle {
+    width: 80px;  
+    height: 80px; 
+    line-height: 80px; 
+    top: -30px;
+    left: -30px;
+}
+
+.large-circle {
+    width: 100px;  
+    height: 100px; 
+    line-height: 100px;
+    top: -40px;
+    left: -40px; 
+}

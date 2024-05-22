@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
 .admin-login-container {
     width: 100%;
     height: auto;
@@ -11,6 +12,8 @@
     padding: 0;
     margin: 0;
     overflow: hidden;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
     background: linear-gradient(45deg, #ffafbca4, #ffc3a0a6, #eeb1fd9f, #cfebfea2, #f8ea9baf, #ffdabcb2);
 }
 
