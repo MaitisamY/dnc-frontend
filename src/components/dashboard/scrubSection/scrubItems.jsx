@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { STATES } from '../../../utils/usaStates.js';
 import { MdCheckBoxOutlineBlank, MdCheckBox, MdOutlineFileDownload } from 'react-icons/md';
 import { FaTrashAlt, FaCogs, FaFileAlt } from 'react-icons/fa';
-import { CiCoins1 } from 'react-icons/ci';
-import { saveAs } from 'file-saver';
 
 function ScrubItems({ scrubItems }) {
 
@@ -60,67 +58,6 @@ function ScrubItems({ scrubItems }) {
         });
         return stateNames.join(', '); // Join state names with comma and space
     };
-
-    const downloadMatchingFile = (fileName) => {
-        console.log('downloading matching file:', fileName);
-        if (fileName === '') {
-            return;
-        }
-        fetch(`http://localhost:3000/download/matching-file/${fileName}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.blob();
-            })
-            .then(blob => {
-                saveAs(blob, fileName); // Assuming saveAs is properly imported
-            })
-            .catch(error => {
-                console.error('Error downloading matching file:', error);
-            });
-    }
-    
-    const downloadNonMatchingFile = (fileName) => {
-        console.log('downloading non-matching file:', fileName);
-        if (fileName === '') {
-            return;
-        }
-        fetch(`http://localhost:3000/download/non-matching-file/${fileName}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.blob();
-            })
-            .then(blob => {
-                saveAs(blob, fileName); // Assuming saveAs is properly imported
-            })
-            .catch(error => {
-                console.error('Error downloading non-matching file:', error);
-            });
-    }
-    
-    const downloadUploadedFile = (fileName) => {
-        console.log('downloading uploaded file:', fileName);
-        if (fileName === '') {
-            return;
-        }
-        fetch(`http://localhost:3000/download/uploaded-file/${encodeURIComponent(fileName)}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.blob();
-            })
-            .then(blob => {
-                saveAs(blob, fileName); // Assuming saveAs is properly imported
-            })
-            .catch(error => {
-                console.error('Error downloading file:', error);
-            });
-    }
-    
 
     return (
         <>
@@ -268,7 +205,7 @@ function ScrubItems({ scrubItems }) {
                                                             </li>
                                                             <li>
                                                                 <a 
-                                                                    onClick={() => downloadMatchingFile(item.matching_file)} 
+                                                                    href={`http://localhost:3000/uploads/${item.non_matching_file}`}
                                                                     download 
                                                                     className="green"
                                                                 >
@@ -278,7 +215,7 @@ function ScrubItems({ scrubItems }) {
                                                             </li>
                                                             <li>
                                                                 <a  
-                                                                    onClick={() => downloadNonMatchingFile(item.non_matching_file)}
+                                                                    href={`http://localhost:3000/uploads/${item.matching_file}`}
                                                                     download 
                                                                     className="green"
                                                                 >

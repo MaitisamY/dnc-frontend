@@ -3,20 +3,31 @@ import { useState, useEffect, useRef } from 'react'
 import { useTheme } from '../../hooks/adminThemeProvider'
 import { useAdmin } from '../../hooks/useAdminProvider'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { MdLogout, MdPersonOutline } from 'react-icons/md'
 import { FaRegMoon, FaRegSun } from 'react-icons/fa6'
 
 export default function Header() {
 
     const { theme, toggleTheme } = useTheme()
-    const { admin } = useAdmin()
+    const { admin, updateAdmin, updateToken } = useAdmin()
     const [profileMenu, setProfileMenu] = useState(false)
 
     const profileRef = useRef(null);
 
+    const navigate = useNavigate()
+
     const toggleProfileMenu = () => {
         setProfileMenu(!profileMenu)
+    }
+
+    const handleLogout = () => {
+        updateAdmin(null)
+        updateToken(null)
+
+        setTimeout(() => {
+            navigate('/admin')
+        }, 2000)
     }
 
     useEffect(() => {
@@ -58,7 +69,7 @@ export default function Header() {
                                 <h3>{admin?.name} <span>Admin</span></h3>
                                 <h5>{admin?.email}</h5>
                             </div>
-                            <button className="logout-button">
+                            <button className="logout-button" onClick={handleLogout}>
                                 Logout <span><MdLogout size={25} style={{ marginBottom: '5px' }} /></span>
                             </button>
                         </div>

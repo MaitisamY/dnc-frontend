@@ -108,6 +108,24 @@ section {
     outline: none;
 }
 
+/* Hide the up and down arrows in Webkit browsers */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide the up and down arrows in Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* General rule to prevent any browser from showing spinner */
+input[type="number"] {
+    appearance: textfield;
+}
+
+
 .text-center {
     text-align: center;
 }
@@ -318,6 +336,57 @@ section {
 @keyframes slideInRight {
     0% { -webkit-transform: translateX(100%); }
     100% { -webkit-transform: translateX(0); }
+}
+
+@keyframes scew {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+    0% { -webkit-transform: translateY(100%); }
+    100% { -webkit-transform: translateY(0); }
+}
+
+@keyframes fadeInUpBig {
+    0% { -webkit-transform: translateY(2000px); }
+    100% { -webkit-transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    0% { -webkit-transform: translateY(-100%); }
+    100% { -webkit-transform: translateY(0); }
+}
+
+@keyframes fadeInDownBig {
+    0% { -webkit-transform: translateY(-2000px); }
+    100% { -webkit-transform: translateY(0); }
+}
+
+@keyframes fadeInRight {
+    0% { -webkit-transform: translateX(100%); }
+    100% { -webkit-transform: translateX(0); }
+}
+
+@keyframes fadeInRightBig {
+    0% { -webkit-transform: translateX(2000px); }
+    100% { -webkit-transform: translateX(0); }
+}
+
+@keyframes fadeInLeftBig {
+    0% { -webkit-transform: translateX(-2000px); }
+    100% { -webkit-transform: translateX(0); }
+}
+
+@keyframes fadeInLeft {
+    0% { -webkit-transform: translateX(-100%); }
+    100% { -webkit-transform: translateX(0); }
+}
+
+@keyframes pulse {
+    0% { -webkit-transform: scale(1); }
+    50% { -webkit-transform: scale(1.1); }
+    100% { -webkit-transform: scale(1); }
 }
 
 .bar-chart {

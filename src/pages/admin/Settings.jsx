@@ -1,17 +1,18 @@
 import '../../styles/admin/admin.css'
 
+import { useState, useEffect } from 'react'
 import { useTheme } from '../../hooks/adminThemeProvider'
-import BarChart from '../../components/admin/BarChart'
-import PieChart from '../../components/admin/PieChart'
+import { Link } from 'react-router-dom'
+import { FaPlus, FaTrash } from 'react-icons/fa6'
 
 import Header from '../../components/admin/Header'
 import Sidebar from '../../components/admin/Sidebar'
 
-function AdminDashboard () {
+function Settings () {
 
     const { theme } = useTheme()
 
-    document.title = 'Dashboard | Admin'
+    document.title = 'Settings | Admin'
 
     return (
         <div className={`admin ${theme === 'light' ? '' : 'dark'}`}>
@@ -21,15 +22,13 @@ function AdminDashboard () {
                 <Sidebar />
 
                 <div className="col-two">
-                    <h1>Dashboard</h1>
-                    <div style={{ display: 'flex', flexDirection: 'row', width: '100%', gap: '20px' }}>
-                        <BarChart />
-                        <PieChart />
-                    </div>
+                    <h1>Settings</h1>
+                    
+
                 </div>
             </main>
         </div>
     )
 }
 
-export default AdminDashboard
+export default Settings

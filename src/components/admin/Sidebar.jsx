@@ -1,6 +1,12 @@
 
 import { Link, useLocation } from 'react-router-dom'
-import { MdOutlineSpeed, MdOutlineHistory, MdSupervisorAccount, MdOutlineDynamicFeed } from 'react-icons/md'
+import { 
+    MdOutlineSpeed, 
+    MdOutlineHistory, 
+    MdSupervisorAccount, 
+    MdOutlineDynamicFeed,
+    MdSettings, 
+} from 'react-icons/md'
 
 export default function Sidebar() {
 
@@ -35,10 +41,18 @@ export default function Sidebar() {
                 </li>
                 <li>
                     <Link 
-                        className={pathname === '/admin/packages' ? 'link normal active' : 'link normal'} 
+                        className={pathname === '/admin/packages' || pathname === '/admin/add-package' ? 'link normal active' : 'link normal'} 
                         to="/admin/packages"
                     >
                         <MdOutlineDynamicFeed size={25} style={{ marginBottom: '5px' }} /> Packages
+                    </Link>
+                </li>
+                <li>
+                    <Link 
+                        className={pathname === '/admin/settings' ? 'link normal active' : 'link normal'} 
+                        to="/admin/settings"
+                    >
+                        <MdSettings size={25} style={{ marginBottom: '5px' }} /> Settings
                     </Link>
                 </li>
             </ul>

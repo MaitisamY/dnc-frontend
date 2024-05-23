@@ -78,7 +78,7 @@ function AdminScrubHistory () {
     const itemVariants = {
         hidden: {
             opacity: 0,
-            x: -150,
+            x: -40,
         },
         visible: {
             opacity: 1,
@@ -98,27 +98,28 @@ function AdminScrubHistory () {
                 <div className="col-two">
                     <h1>Scrub History</h1>
 
-                    <div className="scrub-history-cards-holder">
-                        <div className="pills">
-                            <a 
-                                className={`link ${view === 1 ? 'active' : ''}`} 
-                                onClick={() => toggleView(1)}
-                            >
-                                <MdGridView size={24} />
-                            </a>
-                            <a 
-                                className={`link ${view === 2 ? 'active' : ''}`} 
-                                onClick={() => toggleView(2)}
-                            >
-                                <MdFormatListBulleted size={24} />
-                            </a>
-                        </div>
+                    <div className="pills">
+                        <a 
+                            className={`link ${view === 1 ? 'active' : ''}`} 
+                            onClick={() => toggleView(1)}
+                        >
+                            <MdGridView size={24} />
+                        </a>
+                        <a 
+                            className={`link ${view === 2 ? 'active' : ''}`} 
+                            onClick={() => toggleView(2)}
+                        >
+                            <MdFormatListBulleted size={24} />
+                        </a>
+                    </div>
+
+                    <div className="elements-container">
                         {
-                            Array.isArray(scrubItems) && scrubItems.map((item, index) => (
+                            Array.isArray(scrubItems) ? scrubItems.map((item, index) => (
                             <div 
                                 key={index} 
                                 className="scrub-history-card"
-                                style={{ width: view === 1 ? '23%' : '95%' }}
+                                style={{ width: view === 1 ? '31%' : '95%' }}
                             >
 
                                 <motion.div
@@ -280,7 +281,10 @@ function AdminScrubHistory () {
                                     </table>
                                 </div>
                             </div>
-                        ))}
+                            )) : (
+                                <h5 className="text-red">No Scrub History Found</h5>
+                            )
+                        }
                     </div>
                 </div>
             </main>

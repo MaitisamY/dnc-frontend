@@ -260,6 +260,33 @@
     overflow: hidden;
 }
 
+.admin main .preview-popup {
+    position: fixed;
+    top: 50%;
+    right: 5%;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 0;
+    padding: 20px;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 10px;
+    color: #000;
+    background-color: #fff;
+    z-index: 9999;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+    animation: fadeInUpBig 1s ease-in-out;
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(163,255,214,0.49);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(163,255,214,0.49);
+    box-shadow: 0px 0px 5px 3px rgba(163,255,214,0.49);
+}
+
 .admin main .link-group {
     display: flex;
     justify-content: flex-start;
@@ -368,7 +395,7 @@
 
 .admin main .col-two h1 {
     width: 100%;
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 700;
     font-style: normal;
     color: var(--light-text-color);
@@ -382,20 +409,7 @@
     color: var(--dark-text-color);
 }
 
-.admin main .col-two .scrub-history-cards-holder {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 0;
-    margin: 0;
-}
-
-.admin main .col-two .scrub-history-cards-holder .pills {
+.admin main .col-two .pills {
     width: 100%;
     height: auto;
     display: flex;
@@ -403,13 +417,13 @@
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px;
     padding: 10px 50px;
     margin: 0;
 }
 
-.admin main .col-two .scrub-history-cards-holder .pills .link {
-    font-size: 20px;
+.admin main .col-two .pills .link {
+    font-size: 17px;
     font-weight: 400;
     font-style: normal;
     opacity: 0.87;
@@ -418,17 +432,30 @@
     font-optical-sizing: auto;
 }
 
-.admin.dark main .col-two .scrub-history-cards-holder .pills .link {
+.admin.dark main .col-two .pills .link {
     color: var(--dark-text-color);
 }
 
-.admin main .col-two .scrub-history-cards-holder .pills .link:hover {
+.admin main .col-two .pills .link:hover {
     opacity: 1;
 }
 
-.admin main .col-two .scrub-history-cards-holder .pills .link.active {
+.admin main .col-two .pills .link.active {
     opacity: 1;
     color: #8576FF;
+}
+
+.admin main .col-two .elements-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px 0;
+    margin: 0;
 }
 
 .admin main .col-two .scrub-history-card {
@@ -498,7 +525,7 @@
     font-style: normal;
     opacity: 0.87;
     color: white;
-    background-color: #8576FF;
+    background-color: #8676ffec;
     text-decoration: none;
     cursor: pointer;
     border-radius: 5px;
@@ -511,10 +538,11 @@
 
 .admin main .col-two .scrub-history-card .overlay .link:hover {
     opacity: 1;
+    background-color: #7d6bff;
 }
 
 @media screen and (max-width: 767px) {
-    .admin main .col-two .scrub-history-cards-holder {
+    .admin main .col-two .elements-container {
         flex-direction: column;
     }
 
@@ -587,8 +615,71 @@
     align-items: flex-start;
     flex-direction: column;
     gap: 10px;
-    padding: 0 20px;
+    padding: 0 20px 10px 20px;
     margin: 0;
+}
+
+.admin main .col-two .scrub-history-card .scrub-history-card-body menu {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.admin main .col-two .scrub-history-card .scrub-history-card-body menu li {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.admin main .col-two .scrub-history-card .scrub-history-card-body menu li img {
+    background-color: #8576FF;
+    border-radius: 50%;
+    padding: 5px;
+    box-sizing: border-box;
+    margin: 0 10px 5px 0;
+}
+
+.admin main .col-two .scrub-history-card .scrub-history-card-body h4 {
+    margin: 20px 0 10px 0;
+    padding: 0;
+    font-size: 20px;
+    font-weight: 600;
+    font-style: normal;
+    color: #000;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.admin.dark main .col-two .scrub-history-card .scrub-history-card-body h4 {
+    color: #fff;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.admin main .col-two .scrub-history-card .scrub-history-card-body p {
+    margin: 0;
+    padding: 0;
+    text-align: justify;
+    font-size: 17px;
+    font-weight: 300;
+    font-style: normal;
+    color: #000;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+    white-space: wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.admin.dark main .col-two .scrub-history-card .scrub-history-card-body p {
+    color: #fff;
 }
 
 .admin main .col-two .scrub-history-card .scrub-history-card-body table {
@@ -619,5 +710,451 @@
     text-align: right;
     font-size: 15px;
     padding: 10px 5px;
+}
+
+.admin main .col-two .elements-container form {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 15px 0 15px;
+    margin: 0;
+}
+
+.admin main .col-two .elements-container form .panel-A {
+    width: 60%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.admin main .col-two .elements-container form .panel-B {
+    width: 35%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.admin main .col-two .elements-container form .panel-B .live-preview {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    border-radius: 10px;
+    border: 1px solid var(--light-border-color);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    outline: 3px solid #8576FF;
+    outline-offset: 2px;
+}
+
+.admin.dark main .col-two .elements-container form .panel-B .live-preview {
+    border: 1px solid var(--dark-border-color);
+}
+
+.admin main .col-two .elements-container form .panel-B .live-preview .live-preview-header {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    padding: 20px 40px;
+    margin: 0;
+    background-color: #A3FFD6;
+    border-radius: 10px 10px 0 0;
+}
+
+.admin main .col-two .elements-container form .panel-B .live-preview .live-preview-header h4 {
+    width: 75%;
+    margin: 0;
+    font-size: 28px;
+    white-space: wrap;
+    word-wrap: break-word;
+    word-break: normal;
+}
+
+.admin main .col-two .elements-container form .panel-B .live-preview .live-preview-header span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    background-color: #8576FF;
+    border-radius: 0 5px 0 0;
+    padding: 5px 10px;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.admin main .col-two .elements-container form .panel-B .live-preview .live-preview-header i {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    background-color: #8576FF;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    text-align: center; 
+    padding: 0; 
+    box-sizing: border-box; 
+    z-index: 2;
+}
+
+.admin main .col-two .elements-container form .panel-B .live-preview .live-preview-body {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px 10px 20px;
+    margin: 0;
+}
+
+.admin main .col-two .elements-container form .panel-B .live-preview .live-preview-body menu {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.admin main .col-two .elements-container form .panel-B .live-preview .live-preview-body menu li {
+    font-size: 20px;
+    font-weight: 500;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.admin main .col-two .elements-container form .panel-B .live-preview .live-preview-body menu li img {
+    background-color: #8576FF;
+    border-radius: 50%;
+    padding: 5px;
+    box-sizing: border-box;
+    margin: 0 10px 5px 0;
+}
+
+.admin main .col-two .elements-container form .panel-B .live-preview .live-preview-body p {
+    margin: 20px 0 0 0;
+    padding: 0;
+    text-align: justify;
+    font-size: 15px;
+    font-weight: 300;
+    font-style: normal;
+    color: #000;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+    white-space: wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.admin.dark main .col-two .elements-container form .panel-B .live-preview .live-preview-body p {
+    color: #fff;
+}
+
+.admin main .col-two .elements-container form .panel-A .banner {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0;
+    padding: 25px 25px 15px 60px;
+    margin: 0;
+    background-color: #A3FFD6;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 500px 100px 100px 500px;
+    color: #000;
+    animation: fadeInRightBig 1s ease-in-out;
+}
+
+.admin main .col-two .elements-container form .panel-A .banner .big-circle {
+    position: absolute;
+    top: 0;
+    right: -50px;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 5px;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    background-color: var(--light-bg-color);
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.admin.dark main .col-two .elements-container form .panel-A .banner .big-circle {
+    background-color: var(--dark-bg-color);
+}
+
+.admin main .col-two .elements-container form .panel-A .banner p {
+    padding: 0;
+    margin: 0;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.admin main .col-two .elements-container form .panel-A .custom-group {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0;
+    margin: 0;
+    height: auto;
+    background-color: transparent;
+}
+
+.admin main .col-two .elements-container form .panel-A .custom-group h6 {
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Tilt Neon", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.admin.dark main .col-two .elements-container form .panel-A .custom-group h6 {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.admin main .col-two .elements-container form .panel-A .custom-group label {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 5px;
+    padding: 0;
+    margin: 20px 0 0 0;
+    color: var(--light-text-color);
+    font-family: "Tilt Neon", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.admin main .col-two .elements-container form .panel-A .custom-group label span {
+    font-size: 22px;
+}
+
+.admin.dark main .col-two .elements-container form .panel-A .custom-group label {
+    color: var(--dark-text-color);
+}
+
+.admin main .col-two .elements-container form .panel-A .custom-group select {
+    color: var(--light-text-color);
+}
+
+.admin.dark main .col-two .elements-container form .panel-A .custom-group select {
+    color: var(--dark-text-color);
+}
+
+.admin main .col-two .elements-container form .panel-A .custom-group select option {
+    background-color: var(--light-bg-color);
+    color: var(--light-text-color);
+}
+
+.admin.dark main .col-two .elements-container form .panel-A .custom-group select option {
+    background-color: var(--dark-bg-color);
+    color: var(--dark-text-color);
+}
+
+.admin main .col-two .elements-container form .panel-A .custom-group .field {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border-radius: 5px;
+    color: #000;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.288);
+    font-size: 15px;
+    margin: 0;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.admin.dark main .col-two .elements-container form .panel-A .custom-group .field {
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.288);
+}
+
+.admin main .col-two .elements-container form .panel-A .custom-group .field:focus,
+.admin main .col-two .elements-container form .panel-A .custom-group .field:active {
+    outline: 3px solid #8576FF;
+    outline-offset: 2px;
+}
+
+.admin main .col-two .elements-container form .panel-A .custom-group .field::placeholder {
+    color: var(--light-text-color);
+}
+
+.admin.dark main .col-two .elements-container form .panel-A .custom-group .field::placeholder {
+    color: var(--dark-text-color);
+}
+
+.admin main .col-two .elements-container form .panel-A .remove {
+    font-size: 15px;
+    cursor: pointer;
+    padding: 10px 10px;
+    margin: 0;
+    color: #fff;
+    text-decoration: none;
+    background-color: rgb(253, 57, 57);
+    border-radius: 5px;
+    border: none;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+}
+
+.admin main .col-two .elements-container form .panel-A .remove:hover {
+    background-color: rgb(255, 0, 0, 1);
+}
+
+.admin.dark main .col-two .elements-container form .panel-A .custom-group a {
+    color: var(--dark-text-color);
+}
+
+.admin main .col-two .elements-container form .panel-A .custom-button {
+    width: 49%;
+    height: auto;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: #8676ffd8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 20px;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+    transition: background 0.2s ease-in-out;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.15);
+}
+
+.admin main .col-two .elements-container form .panel-A .custom-button:hover {
+    color: #fff;
+    background: #8576FF;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
+}
+
+.admin main .col-two .elements-container form .panel-A .custom-button.disabled,
+.admin main .col-two .elements-container form .panel-A .custom-button.disabled:hover {
+    color: #000;
+    cursor: not-allowed;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: none;
+    box-shadow: none;
+    opacity: 0.5;
+}
+
+.admin.dark main .col-two .elements-container form .panel-A .custom-button.disabled,
+.admin.dark main .col-two .elements-container form .panel-A .custom-button.disabled:hover {
+    color: #fff;
+    cursor: not-allowed;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: none;
+    box-shadow: none;
+    opacity: 0.5;
+}
+
+.admin main .col-two .elements-container form .panel-A .add-more-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+    width: auto;
+    height: auto;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: none;
+    color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 13px;
+    font-family: "Tilt Neon", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    border: 1px solid rgba(0, 0, 0, 0.288);
+}
+
+.admin.dark main .col-two .elements-container form .panel-A .add-more-button {
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.288);
+}
+
+.admin main .col-two .elements-container form .panel-A .add-more-button:hover {
+    color:rgba(0, 0, 0, 1);
+    border: 1px solid rgba(0, 0, 0, 0.7);
+}
+
+.admin.dark main .col-two .elements-container form .panel-A .add-more-button:hover {
+    color:rgba(255, 255, 255, 1);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.admin main .col-two .elements-container form .panel-A .custom-group p {
+    font-size: medium;
+    font-weight: 500;
+    color: red;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
 }
     

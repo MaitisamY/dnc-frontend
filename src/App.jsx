@@ -26,6 +26,9 @@ const AdminLogin = lazy(() => import('./pages/admin/Login'))
 const AdminDashboard = lazy(() => import('./pages/admin/Dashboard'))
 const AdminScrubHistory = lazy(() => import('./pages/admin/ScrubHistory'))
 const AdminUsers = lazy(() => import('./pages/admin/Users'))
+const AdminPackages = lazy(() => import('./pages/admin/Packages'))
+const AddPackage = lazy(() => import('./pages/admin/AddPackage'))
+const Settings = lazy(() => import('./pages/admin/Settings'))
 
 function App() {
     return (
@@ -53,6 +56,9 @@ function App() {
                             <Route path="/admin/dashboard" element={<AdminDashboard />} />
                             <Route path="/admin/scrub-history" element={<AdminScrubHistory />} />
                             <Route path="/admin/users" element={<AdminUsers />} />
+                            <Route path="/admin/packages" element={<AdminPackages />} />
+                            <Route path="/admin/add-package" element={<AddPackage />} />
+                            <Route path="/admin/settings" element={<Settings />} />
                         </Route>
                     </Routes>
                 </UserProvider>

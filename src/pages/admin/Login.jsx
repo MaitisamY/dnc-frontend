@@ -1,9 +1,14 @@
 import '../../styles/admin/admin-login.css'
 
+import { useAdmin } from '../../hooks/useAdminProvider'
+import { useNavigate } from 'react-router-dom'
 import { useAdminLogin } from '../../utils/useAdminLogin'
 import { FaUnlockKeyhole, FaAt, FaEye, FaEyeSlash } from 'react-icons/fa6'
 
 function AdminLogin () {
+
+    const { token } = useAdmin()
+    const navigate = useNavigate()
 
     const {
         creds,
@@ -16,6 +21,10 @@ function AdminLogin () {
     } = useAdminLogin()
 
     document.title = 'Admin Login | DNC Litigator Check'
+
+    if (token) {
+        navigate('/admin/dashboard')
+    }
 
     return (
         <div className="admin-login-container">
